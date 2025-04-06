@@ -1,0 +1,32 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <id>com.github.vsgol.rename_current_commit_action</id>
+    <name>Rename_current_commit_action</name>
+    <vendor email="galloDest@gmail.com">GalloDest</vendor>
+    <description>
+        Adds an action to the Git toolbar that lets you rename the most recent commit
+        by running `git commit --amend` under the hood. Useful for quickly fixing
+        typos or updating commit messages without using the terminal.
+    </description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>Git4Idea</depends>
+
+    <actions>
+        <group id="GitRenameToolsGroup">
+            <add-to-group group-id="Git.MainMenu" anchor="last"/>
+            <action id="RenameCurrentCommitAction"
+                    class="com.github.vsgol.rename_current_commit_action.RenameCurrentCommitAction"
+                    text="Rename Current Commit"
+                    description="Change the message of the most recent commit using git amend."/>
+        </group>
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <notificationGroup
+                id="Git Rename Commit Notifications"
+                displayType="BALLOON"
+                isLogByDefault="true"/>
+    </extensions>
+
+</idea-plugin>
